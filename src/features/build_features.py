@@ -126,3 +126,10 @@ ax.yaxis.grid(True, linestyle='--', alpha=0.7)
 
 # Affichage du graphique
 plt.show()
+
+#So the company is using three carriers for transportation, and Carrier B helps the company in generating more revenue. Now let’s have a look at the Average lead time and Average Manufacturing Costs for all products of the company:
+
+avg_lead_time = df.groupby('Product type')['Lead time'].mean().reset_index()
+avg_manufacturing_costs = df.groupby('Product type')['Manufacturing costs'].mean().reset_index()
+result = pd.merge(avg_lead_time, avg_manufacturing_costs, on='Product type')
+result.rename(columns={'Lead time': 'Average Lead Time', 'Manufacturing costs': 'Average Manufacturing Costs'}, inplace=True)
